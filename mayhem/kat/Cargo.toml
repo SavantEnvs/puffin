@@ -1,0 +1,17 @@
+[package]
+name = "puffin-mayhem-kat"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+# Own workspace root (see mayhem/fuzz/Cargo.toml for why): keeps this additive
+# crate out of the upstream root Cargo.toml's explicit `members = [...]` list,
+# which we never edit.
+[workspace]
+
+[[bin]]
+name = "kat"
+path = "src/main.rs"
+
+[dependencies.puffin]
+path = "../../puffin"

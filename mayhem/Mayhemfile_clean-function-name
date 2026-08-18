@@ -1,0 +1,8 @@
+project: savantenvs/puffin
+target: clean-function-name
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/clean-function-name/testsuite
+cmds:
+  - cmd: /mayhem/clean-function-name
+    libfuzzer: true

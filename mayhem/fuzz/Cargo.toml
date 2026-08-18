@@ -1,0 +1,47 @@
+[package]
+name = "puffin-mayhem-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2021"
+
+# This crate is deliberately its OWN workspace root (empty [workspace] below), even
+# though it sits inside the puffin repo tree. The puffin root Cargo.toml (upstream
+# file, never edited) lists an explicit `members = ["puffin", "puffin_egui",
+# "puffin_http", "puffin_viewer"]` and does not know about mayhem/fuzz; a nested
+# Cargo.toml without its own [workspace] would make cargo walk up, find that root
+# workspace, and fail because this package isn't a declared member. An empty
+# [workspace] table stops the walk here, so this stays fully additive (no edit to
+# the upstream workspace file). Corollary: this crate's OWN Cargo.lock (force-added;
+# see mayhem/.gitignore) lives entirely under mayhem/, keeping the additive-only
+# branch invariant.
+[workspace]
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+
+[dependencies.puffin]
+path = "../../puffin"
+
+[[bin]]
+name = "clean-function-name"
+path = "fuzz_targets/clean_function_name.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "short-file-name"
+path = "fuzz_targets/short_file_name.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "parse-stream"
+path = "fuzz_targets/parse_stream.rs"
+test = false
+doc = false
+bench = false

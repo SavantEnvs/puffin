@@ -1,0 +1,7 @@
+# mayhem/kat's build artifacts. The upstream root .gitignore only ignores a
+# top-level `target/` (`**/target/` — see puffin's own .gitignore), which DOES
+# match nested dirs, but we still keep this explicit for clarity/robustness and
+# because it must exist BEFORE the first `git add mayhem/` (a bare add without it
+# would risk staging build artifacts). (mayhem/fuzz/ carries its own .gitignore,
+# cargo-fuzz convention.)
+kat/target/

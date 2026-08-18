@@ -1,0 +1,8 @@
+project: savantenvs/puffin
+target: parse-stream
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/parse-stream/testsuite
+cmds:
+  - cmd: /mayhem/parse-stream
+    libfuzzer: true

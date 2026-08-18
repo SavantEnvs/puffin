@@ -1,0 +1,8 @@
+project: savantenvs/puffin
+target: short-file-name
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/short-file-name/testsuite
+cmds:
+  - cmd: /mayhem/short-file-name
+    libfuzzer: true
